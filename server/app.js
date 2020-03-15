@@ -54,6 +54,12 @@ app.post("/posts", (req, res) => {
     }
 });
 
+app.post("/vote", async (req, res) => {
+    let targetId = req.body.id;
+        const doc = await Post.findByIdAndUpdate({_id: targetId}, { $inc: { upVotes: 1 } });
+        console.log(doc);
+});
+
 //validates post before sending to db
 const postIsValid = (req) => {
     return req.name && req.name.toString().trim() !== ""

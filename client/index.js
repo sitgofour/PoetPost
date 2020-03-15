@@ -15,6 +15,7 @@ form.addEventListener("submit", (event) => {
 });
 
 const postsUrl = "http://localhost:3000/posts";
+const updateUrl = "http://localhost:3000/vote";
 const newPostToDB = async (newPost) => {
     try {
         await fetch(postsUrl, {
@@ -74,10 +75,12 @@ const displayAllPosts = (postsArr) => {
         downVotes.innerText = post.downVotes;
 
         let upButton = document.createElement("button");
-        upButton.addEventListener("click", upVote);
+        upButton.innerText = "yesss!";
+        upButton.addEventListener("click", upVote(post._id));
 
         let downButton = document.createElement("button");
-        downButton.addEventListener("click", downVote);
+        downButton.innerText = "boo";
+        downButton.addEventListener("click", downVote(post._id));
 
         voteDiv.appendChild(upVotes);
         voteDiv.appendChild(upButton);
@@ -99,13 +102,27 @@ const displayAllPosts = (postsArr) => {
         postsDiv.appendChild(newPost);
     }
 }
-
-const upVote = () => {
-    console.log("upvote function");    
+//returns onClick function with enclosed reference to postID
+const upVote = (postId) => {
+    return function() {
+        fetch(updateUrl, {
+            method: "POST",
+            body: JSON.stringify({id: postId}),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then(res => res.text())
+        .then(data => console.log(data))
+        // .then(data => console.log(data))
+        .catch(err => console.log(err))
+    }    
 }
-
-const downVote = () => {
-    console.log("downVote function");
+//returns onClick function with enclosed reference to postID
+const downVote = (postId) => {
+    return function() {
+        console.log(postId);
+    }
 }
 
 //shows posts when page loads
