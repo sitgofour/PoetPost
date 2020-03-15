@@ -73,8 +73,16 @@ const displayAllPosts = (postsArr) => {
         let downVotes = document.createElement("p");
         downVotes.innerText = post.downVotes;
 
+        let upButton = document.createElement("button");
+        upButton.addEventListener("click", upVote);
+
+        let downButton = document.createElement("button");
+        downButton.addEventListener("click", downVote);
+
         voteDiv.appendChild(upVotes);
+        voteDiv.appendChild(upButton);
         voteDiv.appendChild(downVotes);
+        voteDiv.appendChild(downButton);
 
         newPost.appendChild(postContent);
         newPost.appendChild(voteDiv);
@@ -84,9 +92,20 @@ const displayAllPosts = (postsArr) => {
         postContent.classList.add("post-content");
         newPost.classList.add("post-div");
 
+        upButton.classList.add("vote-button");
+        downButton.classList.add("down-button");
+
         //append new post div to div wrapper element
         postsDiv.appendChild(newPost);
     }
+}
+
+const upVote = () => {
+    console.log("upvote function");    
+}
+
+const downVote = () => {
+    console.log("downVote function");
 }
 
 //shows posts when page loads
