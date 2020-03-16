@@ -56,8 +56,16 @@ app.post("/posts", (req, res) => {
 
 app.post("/vote", async (req, res) => {
     let targetId = req.body.id;
+    if(req.body.direction === "up") {
         const doc = await Post.findByIdAndUpdate({_id: targetId}, { $inc: { upVotes: 1 } });
         console.log(doc);
+    } else if (req.body.direction === "down") {
+        const doc = await Post.findByIdAndUpdate({_id: targetId}, { $inc: { downVotes: 1 } });
+        console.log(doc);
+    } else {
+        console.log("neither up nor down");
+    }
+
 });
 
 //validates post before sending to db

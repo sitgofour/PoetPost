@@ -76,11 +76,11 @@ const displayAllPosts = (postsArr) => {
 
         let upButton = document.createElement("button");
         upButton.innerText = "yesss!";
-        upButton.addEventListener("click", upVote(post._id));
+        upButton.addEventListener("click", castVote(post._id, "up"));
 
         let downButton = document.createElement("button");
         downButton.innerText = "boo";
-        downButton.addEventListener("click", downVote(post._id));
+        downButton.addEventListener("click", castVote(post._id, "down"));
 
         voteDiv.appendChild(upVotes);
         voteDiv.appendChild(upButton);
@@ -103,11 +103,14 @@ const displayAllPosts = (postsArr) => {
     }
 }
 //returns onClick function with enclosed reference to postID
-const upVote = (postId) => {
+const castVote = (postId, direction) => {
     return function() {
         fetch(updateUrl, {
             method: "POST",
-            body: JSON.stringify({id: postId}),
+            body: JSON.stringify({
+                id: postId,
+                direction: direction
+            }),
             headers: {
                 "Content-Type": "application/json"
             }
