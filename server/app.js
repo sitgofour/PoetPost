@@ -18,8 +18,7 @@ const postSchema = new Schema({
     user: String,
     post: String,
     date: String,
-    upVotes: Number,
-    downVotes: Number
+    voteTotal: Number,
 });
 const Post = new mongoose.model("Post", postSchema);
 
@@ -57,10 +56,10 @@ app.post("/posts", (req, res) => {
 app.post("/vote", async (req, res) => {
     let targetId = req.body.id;
     if(req.body.direction === "up") {
-        const doc = await Post.findByIdAndUpdate({_id: targetId}, { $inc: { upVotes: 1 } });
+        const doc = await Post.findByIdAndUpdate({_id: targetId}, { $inc: { voteTotal: 1 } });
         console.log(doc);
     } else if (req.body.direction === "down") {
-        const doc = await Post.findByIdAndUpdate({_id: targetId}, { $inc: { downVotes: 1 } });
+        const doc = await Post.findByIdAndUpdate({_id: targetId}, { $inc: { voteTotal: -1 } });
         console.log(doc);
     } else {
         console.log("neither up nor down");
@@ -80,21 +79,10 @@ const postToDB = async (newPost) => {
         user: newPost.name,
         post: newPost.post,
         date: new Date().toDateString(),
-        upVotes: 0,
-        downVotes: 0
+        voteTotal: 0
     });
     const doc = await post.save();
     return doc;
 }
 
 
-const updateVotes = (id, direction) => {
-    if(direction === "up") {
-    //Post.find( { upVotes: { $eq: id } } )
-
-    } else {
-    //Post.find( { downVotes: { $eq: id } } )
-
-    }
-    console.log("updated!");
-}

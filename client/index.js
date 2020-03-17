@@ -68,11 +68,9 @@ const displayAllPosts = (postsArr) => {
         postContent.appendChild(postDate);
 
         //create html elements for upvotes and downvotes
-        let upVotes = document.createElement("p");
-        upVotes.innerText = post.upVotes;
 
-        let downVotes = document.createElement("p");
-        downVotes.innerText = post.downVotes;
+        let voteTotal = document.createElement("p");
+        voteTotal.innerText = post.voteTotal;
 
         let upButton = document.createElement("button");
         upButton.innerText = "yesss!";
@@ -82,9 +80,9 @@ const displayAllPosts = (postsArr) => {
         downButton.innerText = "boo";
         downButton.addEventListener("click", castVote(post._id, "down"));
 
-        voteDiv.appendChild(upVotes);
+        
         voteDiv.appendChild(upButton);
-        voteDiv.appendChild(downVotes);
+        voteDiv.appendChild(voteTotal);
         voteDiv.appendChild(downButton);
 
         newPost.appendChild(postContent);
@@ -122,11 +120,11 @@ const castVote = (postId, direction) => {
     }    
 }
 //returns onClick function with enclosed reference to postID
-const downVote = (postId) => {
-    return function() {
-        console.log(postId);
-    }
-}
+// const downVote = (postId) => {
+//     return function() {
+//         console.log(postId);
+//     }
+// }
 
 //shows posts when page loads
 queryAllPosts();
