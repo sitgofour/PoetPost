@@ -57,10 +57,10 @@ app.post("/vote", async (req, res) => {
     let targetId = req.body.id;
     if(req.body.direction === "up") {
         const doc = await Post.findByIdAndUpdate({_id: targetId}, { $inc: { voteTotal: 1 } });
-        console.log(doc);
+        res.send("vote made");
     } else if (req.body.direction === "down") {
         const doc = await Post.findByIdAndUpdate({_id: targetId}, { $inc: { voteTotal: -1 } });
-        console.log(doc);
+        res.send("vote made");
     } else {
         console.log("neither up nor down");
     }

@@ -114,17 +114,16 @@ const castVote = (postId, direction) => {
             }
         })
         .then(res => res.text())
-        .then(data => console.log(data))
+        .then(data => {
+            if(data === "vote made") {
+                queryAllPosts();
+            }
+        })
         // .then(data => console.log(data))
-        .catch(err => console.log(err))
-    }    
+        .catch(err => console.log(err)) 
+    }   
 }
-//returns onClick function with enclosed reference to postID
-// const downVote = (postId) => {
-//     return function() {
-//         console.log(postId);
-//     }
-// }
+
 
 //shows posts when page loads
 queryAllPosts();
