@@ -47,7 +47,9 @@ const displayAllPosts = (postsArr) => {
 
     postsDiv.innerHTML = "";
 
-    for(let post of postsArr) {
+    const sortedPosts = sortPosts(postsArr);
+
+    for(let post of sortedPosts) {
         //create wrapper elements for post elements
         let newPost = document.createElement("div");
         let voteDiv = document.createElement("div");
@@ -122,6 +124,10 @@ const castVote = (postId, direction) => {
         // .then(data => console.log(data))
         .catch(err => console.log(err)) 
     }   
+}
+
+const sortPosts = (arr) => {
+    return arr.sort((a,b) => (a.voteTotal <= b.voteTotal) ? 1 : -1);
 }
 
 
