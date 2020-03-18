@@ -90,10 +90,15 @@ const displayAllPosts = (postsArr) => {
         newPost.appendChild(postContent);
         newPost.appendChild(voteDiv);
 
+        //Determine post background color based on voteTotal
+        const bgColorClass = selectBgColor(post.voteTotal); 
+
         //adding relevant css classes for styling
         voteDiv.classList.add("vote-div");
         postContent.classList.add("post-content");
         newPost.classList.add("post-div");
+        console.log(`"${bgColorClass}"`);
+        newPost.classList.add(bgColorClass);
 
         upButton.classList.add("vote-button");
         downButton.classList.add("down-button");
@@ -128,6 +133,47 @@ const castVote = (postId, direction) => {
 
 const sortPosts = (arr) => {
     return arr.sort((a,b) => (a.voteTotal <= b.voteTotal) ? 1 : -1);
+}
+
+const selectBgColor = (voteTotal) => {
+    let bgColor = "";
+    switch (true){
+        case voteTotal > 40:
+            bgColor = "green-3";
+            break;
+        case voteTotal > 30:
+            bgColor = "green-2";
+            break;
+        case voteTotal > 20:
+            bgColor = "green-1";
+            break;
+        case voteTotal > 10:
+            bgColor = "yellow-1";
+            break;
+        case voteTotal > 0:
+            bgColor = "yellow-2";
+            break;
+        case voteTotal > -10:
+            bgColor = "orange-1";
+            break;
+        case voteTotal > -20:
+            bgColor = "orange-2";
+            break;
+        case voteTotal > -30:
+            bgColor = "red-1";
+            break;
+        case voteTotal > -40:
+            bgColor = "red-2";
+            break;
+        case voteTotal > -Infinity:
+            bgColor = "red-3";
+            break;
+        default: 
+            bgColor = "default-bg";
+            break;
+    }
+    console.log(bgColor);
+    return bgColor;
 }
 
 
