@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);;
+    background: linear-gradient(90deg, #00c9ff 0%, #92FE9D 100%);;
 }
 
 .post-form-wrapper {
@@ -8,10 +8,55 @@ body {
     align-items: center;
 }
 
+.post-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-input-wrapper {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}
+
+.form-input-wrapper label {
+    font-size: 1.3rem;
+    margin: 8px;
+}
+
+.post-form input {
+    width: 50%;
+    height: 1.3rem;
+    background: rgb(25, 25, 25);
+    color: #92FE9D;
+    border: none;
+}
+
+.post-form textarea {
+    background: rgb(25, 25, 25);
+    color: #92FE9D;
+}
+
+.form-submit {
+    height: 2em;
+    font-size: 1.2em;
+    background: rgb(25, 25, 25);
+    color: #92FE9D;
+    border: 2px solid #00c9ff;
+    border-radius: 8px;
+    letter-spacing: 1.4px;
+    margin-top: 15px;
+}
+
 .posts-wrapper {
     display: flex;
     flex-wrap: wrap;
-    width: 80%;
+    justify-content: space-around;
+    width: 100%;
     margin: 30px 10px;
 }
 
@@ -29,8 +74,8 @@ body {
     /* width: 44px; */
     height: 44px;
     background: rgb(25, 25, 25);
-    color: hotpink;
-    border: 2px solid hotpink;
+    color: #92FE9D;
+    border: 2px solid #92FE9D;
     border-radius: 3px;
     text-transform: uppercase;
     font-weight: 400;

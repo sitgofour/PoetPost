@@ -11,12 +11,16 @@
         <h1>RankChat</h1>
     </div>
     <div class="post-form-wrapper">
-        <form method="post" name="post-data" class="post-form">
-            <label for="username">User</label>
-            <input type="text" name="username">
-            <label for="post">Post</label>
-            <input type="text" name="post">
-            <button type="submit">Submit Post</button>
+        <form method="post" name="post-data" class="post-form" id="post-form">
+            <div class="form-input-wrapper">
+                <label for="username">User</label>
+                <input type="text" name="username">
+                <label for="post">Post</label>
+                <textarea form="post-form" rows="4" cols="50" name="post"></textarea>
+            </div>
+            <div>
+                <button type="submit" class="form-submit">Submit Post</button>
+            </div>
         </form>
     </div>
     <div class="posts-wrapper">
