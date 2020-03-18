@@ -8,13 +8,49 @@ body {
     align-items: center;
 }
 
+.posts-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    margin: 30px 10px;
+}
+
 .post-div {
     display: flex;
     justify-content: space-between;
-    width: 300px;
+    min-width: 200px;
+    max-width: 500px;
     border-radius: 5px;
     padding: 3px 15px;
-    margin: 10px;
+    margin: 20px;
+}
+
+.post-div button {
+    /* width: 44px; */
+    height: 44px;
+    background: rgb(25, 25, 25);
+    color: hotpink;
+    border: 2px solid hotpink;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+.post-div button:hover {
+    transform: scale(1.2);
+    transition-duration: .5s;
+}
+
+.post-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.post-content p {
+    margin-left: 10px;
+    max-height: 40%;
 }
 
 .vote-div {
@@ -24,8 +60,7 @@ body {
     justify-content: center;
 }
 
-
-
+/* color definitions for post background */
 .red-3 {
     background: rgba(69, 0, 3, 0.95);
 }

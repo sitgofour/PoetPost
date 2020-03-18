@@ -75,11 +75,11 @@ const displayAllPosts = (postsArr) => {
         voteTotal.innerText = post.voteTotal;
 
         let upButton = document.createElement("button");
-        upButton.innerText = "yesss!";
+        upButton.innerText = "up";
         upButton.addEventListener("click", castVote(post._id, "up"));
 
         let downButton = document.createElement("button");
-        downButton.innerText = "boo";
+        downButton.innerText = "down";
         downButton.addEventListener("click", castVote(post._id, "down"));
 
         
