@@ -81,7 +81,6 @@ const displayAllPosts = (postsArr) => {
         let downButton = document.createElement("button");
         downButton.innerText = "down";
         downButton.addEventListener("click", castVote(post._id, "down"));
-
         
         voteDiv.appendChild(upButton);
         voteDiv.appendChild(voteTotal);
@@ -91,14 +90,16 @@ const displayAllPosts = (postsArr) => {
         newPost.appendChild(voteDiv);
 
         //Determine post background color based on voteTotal
-        const bgColorClass = selectBgColor(post.voteTotal); 
+        const colorClass = selectColorClass(post.voteTotal); 
 
         //adding relevant css classes for styling
         voteDiv.classList.add("vote-div");
         postContent.classList.add("post-content");
         newPost.classList.add("post-div");
-        console.log(`"${bgColorClass}"`);
-        newPost.classList.add(bgColorClass);
+        console.log(`"${colorClass.bgColor}"`);
+        console.log(`"${colorClass.textColor}"`);
+        newPost.classList.add(colorClass.bgColor);
+        newPost.classList.add(colorClass.textColor);
 
         upButton.classList.add("vote-button");
         downButton.classList.add("down-button");
@@ -126,7 +127,6 @@ const castVote = (postId, direction) => {
                 queryAllPosts();
             }
         })
-        // .then(data => console.log(data))
         .catch(err => console.log(err)) 
     }   
 }
@@ -135,45 +135,58 @@ const sortPosts = (arr) => {
     return arr.sort((a,b) => (a.voteTotal <= b.voteTotal) ? 1 : -1);
 }
 
-const selectBgColor = (voteTotal) => {
+const selectColorClass = (voteTotal) => {
     let bgColor = "";
+    let textColor = "";
     switch (true){
         case voteTotal > 40:
             bgColor = "green-3";
+            textColor = "black-text";
             break;
         case voteTotal > 30:
             bgColor = "green-2";
+            textColor = "black-text";
             break;
         case voteTotal > 20:
             bgColor = "green-1";
+            textColor = "black-text";
             break;
         case voteTotal > 10:
             bgColor = "yellow-1";
+            textColor = "black-text";
             break;
         case voteTotal > 0:
             bgColor = "yellow-2";
+            textColor = "black-text";
             break;
         case voteTotal > -10:
             bgColor = "orange-1";
+            textColor = "black-text";
             break;
         case voteTotal > -20:
             bgColor = "orange-2";
+            textColor = "black-text";
             break;
         case voteTotal > -30:
             bgColor = "red-1";
+            textColor = "white-text";
             break;
         case voteTotal > -40:
             bgColor = "red-2";
+            textColor = "white-text";
             break;
         case voteTotal > -Infinity:
             bgColor = "red-3";
+            textColor = "white-text";
             break;
         default: 
             bgColor = "default-bg";
             break;
     }
-    console.log(bgColor);
-    return bgColor;
+    return {
+        "bgColor": bgColor,
+        "textColor": textColor
+    };
 }
 
 

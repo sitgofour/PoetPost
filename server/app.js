@@ -62,7 +62,7 @@ app.post("/vote", async (req, res) => {
         const doc = await Post.findByIdAndUpdate({_id: targetId}, { $inc: { voteTotal: -1 } });
         res.send("vote made");
     } else {
-        console.log("neither up nor down");
+        console.log("neither up or down");
     }
 
 });

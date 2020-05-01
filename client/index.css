@@ -176,3 +176,10 @@ body {
 .default-bg {
     background: whitesmoke;
 }
+
+
+/* text color definitions */
+
+.white-text {
+    color: #E9FFE7;
+}
