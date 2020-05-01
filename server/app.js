@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 
 //db connection
 const connectToDb = async () => {
-    return await mongoose.connect("mongodb://localhost/rankChat", {
+    return await mongoose.connect(process.env.MONGODB_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     });

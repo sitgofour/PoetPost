@@ -14,8 +14,10 @@ form.addEventListener("submit", (event) => {
     newPostToDB(newPost);    
 });
 
-const postsUrl = "http://localhost:3000/posts";
-const updateUrl = "http://localhost:3000/vote";
+const hostName = process.env.HOST_NAME || "http://localhost:3000";
+const postsUrl = `"${hostName}/posts"`;
+const updateUrl = `"${hostName}/votes"`;
+
 const newPostToDB = async (newPost) => {
     try {
         await fetch(postsUrl, {
