@@ -5,7 +5,7 @@ const hostName = "https://poet-post.herokuapp.com";
 
 
 const postsUrl = "https://poet-post.herokuapp.com/posts";
-const updateUrl = "https://poet-post.herokuapp.com/votes";
+const updateUrl = "https://poet-post.herokuapp.com/vote";
 
 const newPostToDB = async (newPost) => {
     try {
@@ -85,8 +85,6 @@ const displayAllPosts = (postsArr) => {
         voteDiv.classList.add("vote-div");
         postContent.classList.add("post-content");
         newPost.classList.add("post-div");
-        console.log(`"${colorClass.bgColor}"`);
-        console.log(`"${colorClass.textColor}"`);
         newPost.classList.add(colorClass.bgColor);
         newPost.classList.add(colorClass.textColor);
 
