@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const path = require("path");
 const cors = require("cors");
 const mongoose = require("mongoose");
 
@@ -34,7 +35,7 @@ app.listen(port, () => {
 });
 
 app.get("/", (req, res) => {
-    res.send("index.html");
+    res.sendFile(path.join(__dirname+'/index.html'));
 });
 
 app.get("/posts", async (req, res) => {
