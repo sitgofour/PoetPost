@@ -1,20 +1,7 @@
 console.log("new script attached...");
 
-// html element selectors
-const form = document.querySelector(".post-form");
-const postsDiv = document.querySelector(".posts-wrapper");
-
-form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const formContent = new FormData(form);
-    const newPost = {
-        name: formContent.get("username"),
-        post: formContent.get("post")
-    }
-    newPostToDB(newPost);    
-});
-
 const hostName = process.env.HOST_NAME || "http://localhost:3000";
+
 const postsUrl = `"${hostName}/posts"`;
 const updateUrl = `"${hostName}/votes"`;
 
@@ -191,6 +178,19 @@ const selectColorClass = (voteTotal) => {
     };
 }
 
+// html element selectors
+const form = document.querySelector(".post-form");
+const postsDiv = document.querySelector(".posts-wrapper");
+
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const formContent = new FormData(form);
+    const newPost = {
+        name: formContent.get("username"),
+        post: formContent.get("post")
+    }
+    newPostToDB(newPost);    
+});
 
 //shows posts when page loads
 queryAllPosts();
