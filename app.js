@@ -34,7 +34,7 @@ app.listen(port, () => {
 });
 
 app.get("/", (req, res) => {
-    res.send("hit the root route bro");
+    res.send("index.html");
 });
 
 app.get("/posts", async (req, res) => {
