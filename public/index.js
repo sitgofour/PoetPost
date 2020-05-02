@@ -1,9 +1,11 @@
 console.log("new script attached...");
 
-const hostName = process.env.HOST_NAME || "http://localhost:3000";
+// const hostName = process.env.HOST_NAME || "http://localhost:3000";
+const hostName = "https://poet-post.herokuapp.com";
 
-const postsUrl = `"${hostName}/posts"`;
-const updateUrl = `"${hostName}/votes"`;
+
+const postsUrl = "https://poet-post.herokuapp.com/posts";
+const updateUrl = "https://poet-post.herokuapp.com/votes";
 
 const newPostToDB = async (newPost) => {
     try {
@@ -23,9 +25,7 @@ const newPostToDB = async (newPost) => {
 
 const queryAllPosts = async () => {
     const posts = await fetch(postsUrl);
-    console.log(posts);
     const postsArr = await posts.json();
-    console.log(postsArr);
     displayAllPosts(postsArr);
 }
 
