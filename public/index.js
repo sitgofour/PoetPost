@@ -1,9 +1,5 @@
-console.log("new script attached...");
 
-// const hostName = process.env.HOST_NAME || "http://localhost:3000";
 const hostName = "https://poet-post.herokuapp.com";
-
-
 const postsUrl = "https://poet-post.herokuapp.com/posts";
 const updateUrl = "https://poet-post.herokuapp.com/vote";
 
@@ -23,17 +19,17 @@ const newPostToDB = async (newPost) => {
     }
 }
 
+// retrieves all posts from server
 const queryAllPosts = async () => {
     const posts = await fetch(postsUrl);
     const postsArr = await posts.json();
     displayAllPosts(postsArr);
 }
 
+//sort posts by votes, then iterate and display
 const displayAllPosts = (postsArr) => {
-    //sort posts by votes, then iterate and display
-    // const rankedPosts = sortByVotes(postsArr);
-    // for(let post of rankedPosts)...
 
+    // reset post wrapper to blank as order will change
     postsDiv.innerHTML = "";
 
     const sortedPosts = sortPosts(postsArr);
@@ -54,12 +50,12 @@ const displayAllPosts = (postsArr) => {
         let postDate = document.createElement("h5");
         postDate.textContent = post.date;
 
+        // attach elements to parent
         postContent.appendChild(user);
         postContent.appendChild(postText);
         postContent.appendChild(postDate);
 
         //create html elements for upvotes and downvotes
-
         let voteTotal = document.createElement("p");
         voteTotal.innerText = post.voteTotal;
 
@@ -71,6 +67,7 @@ const displayAllPosts = (postsArr) => {
         downButton.innerText = "down";
         downButton.addEventListener("click", castVote(post._id, "down"));
         
+        // attach upvote and downvote html elements to parent
         voteDiv.appendChild(upButton);
         voteDiv.appendChild(voteTotal);
         voteDiv.appendChild(downButton);
@@ -95,6 +92,7 @@ const displayAllPosts = (postsArr) => {
         postsDiv.appendChild(newPost);
     }
 }
+
 //returns onClick function with enclosed reference to postID
 const castVote = (postId, direction) => {
     return function() {
@@ -118,10 +116,12 @@ const castVote = (postId, direction) => {
     }   
 }
 
+// sorts post according to vote total
 const sortPosts = (arr) => {
     return arr.sort((a,b) => (a.voteTotal <= b.voteTotal) ? 1 : -1);
 }
 
+// selects post background and text color based on vote total
 const selectColorClass = (voteTotal) => {
     let bgColor = "";
     let textColor = "";
@@ -176,10 +176,11 @@ const selectColorClass = (voteTotal) => {
     };
 }
 
-// html element selectors
+// form element selectors
 const form = document.querySelector(".post-form");
 const postsDiv = document.querySelector(".posts-wrapper");
 
+// submit listener for new post
 form.addEventListener("submit", (event) => {
     event.preventDefault();
     const formContent = new FormData(form);

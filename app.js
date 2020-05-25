@@ -4,6 +4,11 @@ const path = require("path");
 const cors = require("cors");
 const mongoose = require("mongoose");
 
+// use cors middleware
+// use express middleware
+// enable static pages
+app.use(cors());
+app.use(express.json());
 app.use(express.static('public'));
 
 //db connection
@@ -23,14 +28,11 @@ const postSchema = new Schema({
     date: String,
     voteTotal: Number,
 });
+
+// generate post model object
 const Post = new mongoose.model("Post", postSchema);
 
-//use cors middleware
-//use express middleware
-app.use(cors());
-app.use(express.json());
-
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
     console.log("server is listening...");
@@ -57,6 +59,7 @@ app.post("/posts", (req, res) => {
     }
 });
 
+// increments/decrements vote attribute on post 
 app.post("/vote", async (req, res) => {
     let targetId = req.body.id;
     if(req.body.direction === "up") {
@@ -78,6 +81,7 @@ const postIsValid = (req) => {
            req.post && req.post.toString().trim() !== "";
 }
 
+// creates new post, updates db
 const postToDB = async (newPost) => {
     const post = new Post({
         user: newPost.name,
