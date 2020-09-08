@@ -59,6 +59,27 @@ app.post("/posts", (req, res) => {
     }
 });
 
+//route for incoming twilio post requests
+app.post("/post-twilio", (req, res) => {
+    let resObj = {...req.body};
+
+        let newPost = {
+            user: resObj.From,
+            post: resObj.Body
+        };
+    
+    if(postIsValid(newPost)) {
+        try {
+            const mongoResponse = postToDB(newPost);
+            console.log(mongoResponse);
+        }
+        catch(err) {
+            console.log("error while posting twilio post to db");
+            console.log(err);
+        }
+    }
+});
+
 // increments/decrements vote attribute on post 
 app.post("/vote", async (req, res) => {
     let targetId = req.body.id;
