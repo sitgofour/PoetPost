@@ -76,14 +76,11 @@ app.post("/post-twilio", (req, res) => {
     console.log(newPost);
 
     if(twilioPostIsValid(newPost)) {
-        try {
-            const mongoResponse = postToDB(newPost);
-            console.log(mongoResponse);
-        }
-        catch(err) {
-            console.log("error while posting twilio post to db");
-            console.log(err);
-        }
+       
+        postToDB(newPost)
+        .then(doc => res.json(doc))
+        .catch(err => console.log(err));
+        
     } else {
         console.log("post is not valid");
     }
