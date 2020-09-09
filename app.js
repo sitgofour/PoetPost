@@ -61,12 +61,14 @@ app.post("/posts", (req, res) => {
 
 //route for incoming twilio post requests
 app.post("/post-twilio", (req, res) => {
+    console.log("in post-twilio route...")
+    
     let resObj = {...req.body};
 
-        let newPost = {
-            user: resObj.From,
-            post: resObj.Body
-        };
+    let newPost = {
+        user: resObj.From,
+        post: resObj.Body
+    };
     
     if(postIsValid(newPost)) {
         try {
@@ -77,6 +79,8 @@ app.post("/post-twilio", (req, res) => {
             console.log("error while posting twilio post to db");
             console.log(err);
         }
+    } else {
+        console.log("post is not valid");
     }
 });
 
