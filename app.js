@@ -3,6 +3,7 @@ const app = express();
 const path = require("path");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 
 // use cors middleware
 // use express middleware
@@ -10,6 +11,7 @@ const mongoose = require("mongoose");
 app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
+app.use(bodyParser.urlencoded({extended: true}));
 
 //db connection
 const connectToDb = async () => {
