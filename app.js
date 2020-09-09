@@ -70,7 +70,7 @@ app.post("/post-twilio", (req, res) => {
         post: resObj.Body
     };
     
-    if(postIsValid(newPost)) {
+    if(twilioPostIsValid(newPost)) {
         try {
             const mongoResponse = postToDB(newPost);
             console.log(mongoResponse);
@@ -104,6 +104,12 @@ const postIsValid = (req) => {
     return req.name && req.name.toString().trim() !== ""
             &&
            req.post && req.post.toString().trim() !== "";
+}
+
+const twilioPostIsValid = (newPost) => {
+    return newPost.user && newPost.user.toString().trim() !== ""
+            &&
+           newPost.pos && newPost.post.toString().trim() !== "";
 }
 
 // creates new post, updates db
