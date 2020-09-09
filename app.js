@@ -116,12 +116,15 @@ const twilioPostIsValid = (newPost) => {
 
 // creates new post, updates db
 const postToDB = async (newPost) => {
+    console.log("in post to db func");
+    console.log(newPost);
     const post = new Post({
         user: newPost.name,
         post: newPost.post,
         date: new Date().toDateString(),
         voteTotal: 0
     });
+    console.log(post);
     const doc = await post.save();
     return doc;
 }
