@@ -69,7 +69,7 @@ app.post("/post-twilio", (req, res) => {
     console.log(resObj);
 
     let newPost = {
-        user: resObj.From,
+        name: resObj.From,
         post: resObj.Body
     };
     
@@ -112,7 +112,7 @@ const postIsValid = (req) => {
 }
 
 const twilioPostIsValid = (newPost) => {
-    return newPost.user && newPost.user.toString().trim() !== ""
+    return newPost.name && newPost.name.toString().trim() !== ""
             &&
            newPost.post && newPost.post.toString().trim() !== "";
 }
