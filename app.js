@@ -64,12 +64,15 @@ app.post("/post-twilio", (req, res) => {
     console.log("in post-twilio route...")
     
     let resObj = {...req.body};
+    console.log(resObj);
 
     let newPost = {
         user: resObj.From,
         post: resObj.Body
     };
     
+    console.log(newPost);
+
     if(twilioPostIsValid(newPost)) {
         try {
             const mongoResponse = postToDB(newPost);
@@ -109,7 +112,7 @@ const postIsValid = (req) => {
 const twilioPostIsValid = (newPost) => {
     return newPost.user && newPost.user.toString().trim() !== ""
             &&
-           newPost.pos && newPost.post.toString().trim() !== "";
+           newPost.post && newPost.post.toString().trim() !== "";
 }
 
 // creates new post, updates db
