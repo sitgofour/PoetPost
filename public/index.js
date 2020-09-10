@@ -1,6 +1,6 @@
 
 const hostName = "https://poet-post.herokuapp.com";
-const postsUrl = "https://calm-journey-87396.herokuapp.com/posts";
+const postsUrl = "https://poet-post.herokuapp.com/posts";
 const updateUrl = "https://poet-post.herokuapp.com/vote";
 
 const newPostToDB = async (newPost) => {

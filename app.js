@@ -4,7 +4,7 @@ const path = require("path");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const { type } = require("os");
+
 
 // use cors middleware
 // use express middleware
