@@ -21,9 +21,15 @@ const newPostToDB = async (newPost) => {
 
 // retrieves all posts from server
 const queryAllPosts = async () => {
-    const posts = await fetch(postsUrl);
-    const postsArr = await posts.json();
-    displayAllPosts(postsArr);
+    try {
+        const posts = await fetch(postsUrl);
+        const postsArr = await posts.json();
+        displayAllPosts(postsArr);
+    } 
+    catch(err) {
+        console.log("error while gathering db posts" + err);
+    }
+    
 }
 
 //sort posts by votes, then iterate and display
