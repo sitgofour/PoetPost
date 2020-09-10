@@ -77,9 +77,7 @@ app.post("/post-twilio", (req, res) => {
 
     if(twilioPostIsValid(newPost)) {
        
-        postToDB(newPost)
-        .then(doc => res.json(doc))
-        .catch(err => console.log(err));
+        twilioPostToDB(newPost);
         
     } else {
         console.log("post is not valid");
@@ -114,17 +112,23 @@ const twilioPostIsValid = (newPost) => {
            newPost.post && newPost.post.toString().trim() !== "";
 }
 
+
+const twilioPostToDB = async (newPost) => {
+    console.log("twilio post to db");
+    const postRes = await postToDB(newPost);
+    console.log(postRes);
+}
+
 // creates new post, updates db
 const postToDB = async (newPost) => {
-    console.log("in post to db func");
-    console.log(newPost);
+    console.log("post to db func");
     const post = new Post({
         user: newPost.name,
         post: newPost.post,
         date: new Date().toDateString(),
         voteTotal: 0
     });
-    console.log(post);
+    
     const doc = await post.save();
     return doc;
 }
