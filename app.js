@@ -4,6 +4,7 @@ const path = require("path");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const { type } = require("os");
 
 // use cors middleware
 // use express middleware
@@ -122,14 +123,18 @@ const twilioPostToDB = async (newPost) => {
 // creates new post, updates db
 const postToDB = async (newPost) => {
     console.log("post to db func");
+    console.log(type(newPost.name));
+    console.log(type(newPost.post));
+
     const post = new Post({
         user: newPost.name,
         post: newPost.post,
         date: new Date().toDateString(),
         voteTotal: 0
     });
-    
+    console.log("now here");
     const doc = await post.save();
+    console.log("we got here?");
     return doc;
 }
 
