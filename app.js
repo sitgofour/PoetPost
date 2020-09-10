@@ -123,8 +123,8 @@ const twilioPostToDB = async (newPost) => {
 // creates new post, updates db
 const postToDB = async (newPost) => {
     console.log("post to db func");
-    console.log(type(newPost.name));
-    console.log(type(newPost.post));
+    console.log(typeof(newPost.name));
+    console.log(typeof(newPost.post));
 
     const post = new Post({
         user: newPost.name,
