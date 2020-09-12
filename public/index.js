@@ -194,7 +194,8 @@ form.addEventListener("submit", (event) => {
         name: formContent.get("username"),
         post: formContent.get("post")
     }
-    newPostToDB(newPost);    
+    newPostToDB(newPost);
+    form.reset();  
 });
 
 //shows posts when page loads
