@@ -55,22 +55,13 @@ app.post("/posts", (req, res) => {
 
 //route for incoming twilio post requests
 app.post("/post-twilio", (req, res) => {
-    console.log("in post-twilio route...")
-    
     let resObj = {...req.body};
-    console.log(resObj);
-
     let newPost = {
         name: resObj.From,
         post: resObj.Body
     };
-    
-    console.log(newPost);
-
     if(twilioPostIsValid(newPost)) {
-       
         twilioPostToDB(newPost);
-        
     } else {
         console.log("post is not valid");
     }
@@ -88,20 +79,21 @@ app.post("/vote", async (req, res) => {
     } else {
         console.log("neither up or down");
     }
-
 });
 
 
 const twilioPostToDB = async (newPost) => {
-    console.log("twilio post to db");
-    const postRes = await postToDB(newPost);
-    console.log(postRes);
+    try {
+        const postRes = await postToDB(newPost);
+        return "Successfully Posted";
+    }
+    catch(err) {
+        console.log(`Error while posting to db from Twilio: ${err}`);
+    }
 }
 
 // creates new post, updates db
-const postToDB = async (newPost) => {
-    console.log("post to db func");
-    
+const postToDB = async (newPost) => {    
     try {
         const post = await new Post({
             user: newPost.name,
@@ -109,12 +101,11 @@ const postToDB = async (newPost) => {
             date: new Date().toDateString(),
             voteTotal: 0
         });
-        console.log("now here");
         const doc = await post.save();
+        return doc;
     }
     catch(err) {
-        console.log("we got here?");
-        return doc;
+        console.log(`Error while posting to db: ${err}`);
     }
 }
 
