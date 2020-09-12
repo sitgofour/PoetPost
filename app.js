@@ -3,8 +3,8 @@ const app = express();
 const path = require("path");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const { Post, connectToDB } = require("./database.js");
-
+const { Post } = require("./database.js");
+const { postIsValid, twilioPostIsValid } = require("./postValidate.js");
 
 // ***************************************
 // MIDDLEWARE
@@ -90,19 +90,6 @@ app.post("/vote", async (req, res) => {
     }
 
 });
-
-//validates post before sending to db
-const postIsValid = (req) => {
-    return req.name && req.name.toString().trim() !== ""
-            &&
-           req.post && req.post.toString().trim() !== "";
-}
-
-const twilioPostIsValid = (newPost) => {
-    return newPost.name && newPost.name.toString().trim() !== ""
-            &&
-           newPost.post && newPost.post.toString().trim() !== "";
-}
 
 
 const twilioPostToDB = async (newPost) => {
