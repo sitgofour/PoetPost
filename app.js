@@ -5,6 +5,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const { Post } = require("./database.js");
 const { postIsValid, twilioPostIsValid } = require("./postValidate.js");
+const { twilioPostToDB, postToDB } = require("./dbFunctions.js");
 
 // ***************************************
 // MIDDLEWARE
@@ -84,31 +85,6 @@ app.post("/vote", async (req, res) => {
 });
 
 
-const twilioPostToDB = async (newPost) => {
-    try {
-        const doc = await postToDB(newPost);
-        return doc;
-    }
-    catch(err) {
-        console.log(`Error while posting to db from Twilio: ${err}`);
-    }
-}
 
-// creates new post, updates db
-const postToDB = async (newPost) => {    
-    try {
-        const post = await new Post({
-            user: newPost.name,
-            post: newPost.post,
-            date: new Date().toDateString(),
-            voteTotal: 0
-        });
-        const doc = await post.save();
-        return doc;
-    }
-    catch(err) {
-        console.log(`Error while posting to db: ${err}`);
-    }
-}
 
 
