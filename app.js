@@ -61,7 +61,9 @@ app.post("/post-twilio", (req, res) => {
         post: resObj.Body
     };
     if(twilioPostIsValid(newPost)) {
-        twilioPostToDB(newPost);
+        twilioPostToDB(newPost)
+        .then(doc => res.json(doc))
+        .catch(err => console.log(err));
     } else {
         console.log("post is not valid");
     }
@@ -84,8 +86,8 @@ app.post("/vote", async (req, res) => {
 
 const twilioPostToDB = async (newPost) => {
     try {
-        const postRes = await postToDB(newPost);
-        return "Successfully Posted";
+        const doc = await postToDB(newPost);
+        return doc;
     }
     catch(err) {
         console.log(`Error while posting to db from Twilio: ${err}`);
