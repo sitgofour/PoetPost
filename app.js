@@ -2,9 +2,13 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const cors = require("cors");
-const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const { Post, connectToDB } = require("./database.js");
 
+
+// ***************************************
+// MIDDLEWARE
+// ***************************************
 
 // use cors middleware
 // use express middleware
@@ -14,26 +18,13 @@ app.use(express.json());
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: true}));
 
-//db connection
-const connectToDb = async () => {
-    return await mongoose.connect(process.env.MONGODB_URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    });
-}
-const db = connectToDb();
+// ***************************************
 
-//db schema/model definition
-const Schema = mongoose.Schema;
-const postSchema = new Schema({
-    user: String,
-    post: String,
-    date: String,
-    voteTotal: Number,
-});
 
-// generate post model object
-const Post = new mongoose.model("Post", postSchema);
+
+// ***************************************
+// ROUTES
+// ***************************************
 
 const port = process.env.PORT || 3000;
 
