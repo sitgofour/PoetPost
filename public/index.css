@@ -107,6 +107,7 @@ header {
     justify-content: space-around;
     width: 100%;
     margin: 30px 10px;
+    perspective: 3500px;
 }
 
 .post-div {
@@ -117,6 +118,13 @@ header {
     border-radius: 5px;
     padding: 3px 15px;
     margin: 20px;
+    transform: rotateY(15deg);
+    border-bottom: 4px solid rgba(25, 25, 25, .6);
+    border-left: 4px solid rgba(25, 25, 25, .6);
+}
+
+.post-div button:hover {
+    transform: rotateY(0);
 }
 
 
@@ -131,11 +139,6 @@ header {
     font-weight: 400;
 }
 
-.post-div button:hover {
-    transform: scale(1.2);
-    transition-duration: .5s;
-}
-
 .post-content {
     display: flex;
     flex-direction: column;
@@ -146,6 +149,11 @@ header {
 .post-content p {
     margin-left: 10px;
     max-height: 40%;
+    line-height: 1.4em;
+}
+
+.post-content h5 {
+    margin-top: 5em;
 }
 
 .vote-div {
