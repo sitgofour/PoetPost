@@ -1,8 +1,10 @@
 body {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(90deg, #00c9ff 0%, #92FE9D 100%);;
+    width: 100vw;
+    margin: 0px;
+    padding: 0px;
+    position: relative;
+    background: linear-gradient(90deg, #00c9ff 0%, #92FE9D 100%);
+    background-repeat: no-repeat;
     font-family: 'Josefin Sans', sans-serif;
 }
 
@@ -103,8 +105,9 @@ header {
 
 .posts-wrapper {
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
-    justify-content: space-around;
+    align-items: center;
     width: 100%;
     margin: 30px 10px;
     perspective: 3500px;
@@ -113,12 +116,12 @@ header {
 .post-div {
     display: flex;
     justify-content: space-between;
-    min-width: 200px;
-    max-width: 500px;
+    min-width: 600px;
+    max-width: 900px;
     border-radius: 5px;
     padding: 3px 15px;
     margin: 20px;
-    transform: rotateY(15deg);
+    transform: rotateY(5deg);
     border-bottom: 4px solid rgba(25, 25, 25, .6);
     border-left: 4px solid rgba(25, 25, 25, .6);
     box-shadow: 20px -20px 15px #222;

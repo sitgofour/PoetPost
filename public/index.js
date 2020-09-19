@@ -51,7 +51,9 @@ const displayAllPosts = (postsArr) => {
         user.textContent = post.user;
 
         let postText = document.createElement("p");
-        postText.textContent = post.post;
+        postText.innerText = post.post;
+
+
 
         let postDate = document.createElement("h5");
         postDate.textContent = post.date;
