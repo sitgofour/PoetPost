@@ -19,7 +19,7 @@ const newPostToDB = async (newPost) => {
     }
 }
 
-// retrieves all posts from server
+// retrieves all posts from database
 const queryAllPosts = async () => {
     try {
         const posts = await fetch(postsUrl);
@@ -53,16 +53,18 @@ const displayAllPosts = (postsArr) => {
         let postText = document.createElement("p");
         postText.innerText = post.post;
 
-
-
         let postDate = document.createElement("h5");
         postDate.textContent = post.date;
 
+
+        ////////////////////////////////////////////////
         // attach elements to parent
         postContent.appendChild(user);
         postContent.appendChild(postText);
         postContent.appendChild(postDate);
 
+
+        ////////////////////////////////////////////////
         //create html elements for upvotes and downvotes
         let voteTotal = document.createElement("p");
         voteTotal.innerText = post.voteTotal;
@@ -74,7 +76,9 @@ const displayAllPosts = (postsArr) => {
         let downButton = document.createElement("button");
         downButton.innerText = "down";
         downButton.addEventListener("click", castVote(post._id, "down"));
+
         
+        ////////////////////////////////////////////////
         // attach upvote and downvote html elements to parent
         voteDiv.appendChild(upButton);
         voteDiv.appendChild(voteTotal);
@@ -83,9 +87,13 @@ const displayAllPosts = (postsArr) => {
         newPost.appendChild(postContent);
         newPost.appendChild(voteDiv);
 
+
+        ////////////////////////////////////////////////
         //Determine post background color based on voteTotal
         const colorClass = selectColorClass(post.voteTotal); 
 
+
+        ////////////////////////////////////////////////
         //adding relevant css classes for styling
         voteDiv.classList.add("vote-div");
         postContent.classList.add("post-content");
@@ -96,11 +104,14 @@ const displayAllPosts = (postsArr) => {
         upButton.classList.add("vote-button");
         downButton.classList.add("down-button");
 
+
+        ////////////////////////////////////////////////
         //append new post div to div wrapper element
         postsDiv.appendChild(newPost);
     }
 }
 
+/////////////////////////////////////////////////////////////
 //returns onClick function with enclosed reference to postID
 const castVote = (postId, direction) => {
     return function() {
@@ -136,7 +147,7 @@ const selectColorClass = (voteTotal) => {
     switch (true){
         case voteTotal > 40:
             bgColor = "green-3";
-            textColor = "black-text";
+            textColor = "white-text";
             break;
         case voteTotal > 30:
             bgColor = "green-2";

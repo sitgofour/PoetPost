@@ -115,7 +115,7 @@ header {
 
 .post-div {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     min-width: 600px;
     max-width: 900px;
     border-radius: 5px;
@@ -127,13 +127,7 @@ header {
     box-shadow: 20px -20px 15px #222;
 }
 
-.post-div button:hover {
-    transform: rotateY(0);
-}
-
-
 .post-div button {
-    /* width: 44px; */
     height: 44px;
     background: rgb(25, 25, 25);
     color: #92FE9D;
@@ -141,6 +135,11 @@ header {
     border-radius: 3px;
     text-transform: uppercase;
     font-weight: 400;
+}
+
+.post-div button:hover {
+    background: rgba(247, 247, 247, 0.55);
+    color: black;
 }
 
 .post-content {
