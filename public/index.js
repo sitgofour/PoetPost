@@ -3,21 +3,6 @@ const hostName = "https://poet-post.herokuapp.com";
 const postsUrl = "https://poet-post.herokuapp.com/posts";
 const updateUrl = "https://poet-post.herokuapp.com/vote";
 
-const newPostToDB = async (newPost) => {
-    try {
-        await fetch(postsUrl, {
-            method: "POST",
-            body: JSON.stringify(newPost),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        });
-        queryAllPosts()
-    }
-    catch {
-        console.log("error while posting");
-    }
-}
 
 // retrieves all posts from database
 const queryAllPosts = async () => {
@@ -108,6 +93,22 @@ const displayAllPosts = (postsArr) => {
         ////////////////////////////////////////////////
         //append new post div to div wrapper element
         postsDiv.appendChild(newPost);
+    }
+}
+
+const newPostToDB = async (newPost) => {
+    try {
+        await fetch(postsUrl, {
+            method: "POST",
+            body: JSON.stringify(newPost),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        queryAllPosts()
+    }
+    catch {
+        console.log("error while posting");
     }
 }
 
